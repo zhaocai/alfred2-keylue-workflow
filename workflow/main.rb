@@ -9,7 +9,41 @@ require "alfred"
 
 load 'menu_items.rb'
 
-require 'benchmark'
+
+def generate_keyboardmaestro_feedback(alfred)
+  km_hotkeys = Plist::parse_xml(
+    %x{osascript <<__APPLESCRIPT__
+  try
+    get application id "com.stairways.keyboardmaestro.engine"
+  on error err_msg number err_num
+    return ""
+  end try
+
+  tell application id "com.stairways.keyboardmaestro.engine"
+    gethotkeys with asstring
+  end tell
+__APPLESCRIPT__})
+
+  return unless km_hotkeys
+
+  feedback = alfred.feedback
+  feedback_icon = {:type => "fileicon", :name => "/Applications/Keyboard Maestro.app"}
+
+  km_hotkeys.each do |group|
+    group_name = group['name']
+
+    group['macros'].each do |item|
+      feedback.add_item({
+        :title    => "#{item['key']} ⟩ #{item['name']}",
+        :subtitle => "Keyboard Maestro: #{group_name}",
+        :uid      => item['id'] ,
+        :arg      => item['id'] ,
+        :icon     => feedback_icon,
+      })
+    end
+  end
+
+end
 
 def generate_menu_feedback(alfred)
 
@@ -39,6 +73,7 @@ def generate_menu_feedback(alfred)
 end
 
 def generate_feedback(alfred, query)
+  generate_keyboardmaestro_feedback(alfred)
   generate_menu_feedback(alfred)
 
   alfred.feedback.put_cached_feedback
