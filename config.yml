@@ -1,0 +1,8 @@
+--- # bundle id = domain.id
+path: workflow
+domain: me.zhaocai
+id: keylue
+
+# If you are using Alfred's advanced Dropbox sync, indicate the path shown in
+# Alfred Preferences > Advanced > Syncing:
+dropbox: ~/Dropbox/Alfred
