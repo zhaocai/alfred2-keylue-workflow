@@ -33,13 +33,23 @@ __APPLESCRIPT__})
     group_name = group['name']
 
     group['macros'].each do |item|
-      feedback.add_item({
-        :title    => "#{item['key']} ⟩ #{item['name']}",
-        :subtitle => "Keyboard Maestro: #{group_name}",
-        :uid      => item['uid'] ,
-        :arg      => "<action type='keyboardmaestro'>#{item['uid']}</action>",
-        :icon     => feedback_icon,
-      })
+      if item['name']
+        feedback.add_item({
+          :title    => "#{item['key']} ⟩ #{item['name']}",
+          :subtitle => "Keyboard Maestro: #{group_name}",
+          :uid      => item['uid'] ,
+          :arg      => "<action type='keyboardmaestro'>#{item['uid']}</action>",
+          :icon     => feedback_icon,
+        })
+      elsif item['namev2']
+        feedback.add_item({
+          :title    => "#{item['triggerstring']} ⟩ #{item['namev2']}",
+          :subtitle => "Keyboard Maestro: #{group_name}",
+          :uid      => item['uid'] ,
+          :arg      => "<action type='keyboardmaestro'>#{item['uid']}</action>",
+          :icon     => feedback_icon,
+        })
+      end
     end
   end
 
