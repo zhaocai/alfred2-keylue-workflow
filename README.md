@@ -12,7 +12,7 @@ Just one keywords `kc`: Show menu items and Keyboard Maestro hot keys. Hit `Ente
 
 The feedback results for each application are cached for speedy response. The cached results are reloaded if it is older than an hour.
 
-To refresh staled feedback, append `!` after the keyword. For exammple, `kc ! query`.
+To refresh staled feedback, append `!` after the keyword. For example, `kc ! query`.
 
 ![](https://raw.github.com/zhaocai/alfred2-keylue-workflow/master/screenshots/chrome.png)
 
@@ -20,7 +20,7 @@ To refresh staled feedback, append `!` after the keyword. For exammple, `kc ! qu
 
 Two ways are provided:
 
-1. You can download the [Keylue.alfredworkflow](https://github.com/zhaocai/alfred2-kyelue-workflow/raw/master/Keylue.alfredworkflow) and import to Alfred 2. This method is suitable for **regular users**.
+1. You can download the [Keylue.alfredworkflow](https://github.com/zhaocai/alfred2-keylue-workflow/blob/master/Keylue.alfredworkflow?raw=true) and import to Alfred 2. This method is suitable for **regular users**.
 
 2. You can `git clone` or `fork` this repository and use `rake install` and `rake uninstall` to install. Check `rake -T` for available tasks.
 This method create a symlink to the alfred workflow directory: "~/Library/Application Support/Alfred 2/Alfred.alfredpreferences/workflows". This method is suitable for **developers**.
