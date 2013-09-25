@@ -36,8 +36,8 @@ __APPLESCRIPT__})
       feedback.add_item({
         :title    => "#{item['key']} ⟩ #{item['name']}",
         :subtitle => "Keyboard Maestro: #{group_name}",
-        :uid      => item['id'] ,
-        :arg      => item['id'] ,
+        :uid      => item['uid'] ,
+        :arg      => "<action type='keyboardmaestro'>#{item['uid']}</action>",
         :icon     => feedback_icon,
       })
     end
@@ -65,7 +65,7 @@ def generate_menu_feedback(alfred)
       :title    => name                                              ,
       :uid      => "#{application}: #{item[:path]} > #{item[:name]}" ,
       :subtitle => "#{application}: #{item[:path]}"                  ,
-      :arg      => item[:line]                                       ,
+      :arg      => "<action application='#{application}' type='menu'>#{item[:line]}</action>",
       :icon     => feedback_icon,
     })
   end
@@ -73,8 +73,8 @@ def generate_menu_feedback(alfred)
 end
 
 def generate_feedback(alfred, query)
-  generate_keyboardmaestro_feedback(alfred)
   generate_menu_feedback(alfred)
+  generate_keyboardmaestro_feedback(alfred)
 
   alfred.feedback.put_cached_feedback
   puts alfred.feedback.to_alfred(query)
@@ -88,7 +88,7 @@ Alfred.with_friendly_error do |alfred|
     "#{Alfred.front_appid}.alfred2feedback")
 
   alfred.with_cached_feedback do
-    use_cache_file(:file => cache_file, :expire => 86400)
+    use_cache_file(:file => cache_file, :expire => 3600)
   end
 
   is_refresh = false
@@ -97,9 +97,7 @@ Alfred.with_friendly_error do |alfred|
     ARGV.shift
   end
 
-  # alfred.ui.debug(cache_file)
   if !is_refresh and fb = alfred.feedback.get_cached_feedback
-    # alfred.ui.debug("CachedFeedback")
     puts fb.to_alfred(ARGV)
   else
     generate_feedback(alfred, ARGV)

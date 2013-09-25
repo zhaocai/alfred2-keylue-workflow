@@ -18,7 +18,16 @@
 			</dict>
 		</array>
 		<key>C8DFF277-2C74-48D3-B685-F304268DF007</key>
-		<array/>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>AB56D745-4CA7-4C5C-A53A-54B1496BDD0D</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+		</array>
 		<key>D75A822F-5FB7-4372-B080-617E8D0BA5C1</key>
 		<array>
 			<dict>
@@ -101,7 +110,8 @@
 				<key>escaping</key>
 				<integer>4</integer>
 				<key>script</key>
-				<string>osascript execute.scpt "{query}"</string>
+				<string>/usr/bin/ruby ./action.rb "{query}"
+# echo "{query}"</string>
 				<key>type</key>
 				<integer>0</integer>
 			</dict>
@@ -112,6 +122,31 @@
 			<key>version</key>
 			<integer>0</integer>
 		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>lastpathcomponent</key>
+				<false/>
+				<key>onlyshowifquerypopulated</key>
+				<true/>
+				<key>output</key>
+				<integer>0</integer>
+				<key>removeextension</key>
+				<false/>
+				<key>sticky</key>
+				<false/>
+				<key>text</key>
+				<string>{query}</string>
+				<key>title</key>
+				<string>Key Clue</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.notification</string>
+			<key>uid</key>
+			<string>AB56D745-4CA7-4C5C-A53A-54B1496BDD0D</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
 	</array>
 	<key>readme</key>
 	<string>## Reference:
@@ -119,6 +154,11 @@
 - [menudump](https://github.com/ctwise/menudump "menudump")</string>
 	<key>uidata</key>
 	<dict>
+		<key>AB56D745-4CA7-4C5C-A53A-54B1496BDD0D</key>
+		<dict>
+			<key>ypos</key>
+			<real>60</real>
+		</dict>
 		<key>B1612814-E74D-47AF-920E-8038BD947AEB</key>
 		<dict>
 			<key>ypos</key>
