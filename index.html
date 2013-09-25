@@ -1,0 +1,98 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Alfred2-keylue-workflow by zhaocai</title>
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="javascripts/main.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+  </head>
+  <body>
+
+      <header>
+        <h1>Alfred2-keylue-workflow</h1>
+        <p>Keylue (Key Clue): Alfred 2 Workflow for Menu Bar and Keyboard Maestro Hot Key Search</p>
+      </header>
+
+      <div id="banner">
+        <span id="logo"></span>
+
+        <a href="https://github.com/zhaocai/alfred2-keylue-workflow" class="button fork"><strong>View On GitHub</strong></a>
+        <div class="downloads">
+          <span>Downloads:</span>
+          <ul>
+            <li><a href="https://github.com/zhaocai/alfred2-keylue-workflow/zipball/master" class="button">ZIP</a></li>
+            <li><a href="https://github.com/zhaocai/alfred2-keylue-workflow/tarball/master" class="button">TAR</a></li>
+          </ul>
+        </div>
+      </div><!-- end banner -->
+
+    <div class="wrapper">
+      <nav>
+        <ul></ul>
+      </nav>
+      <section>
+        <h1>
+<a name="keylue-key-clue-alfred-2-workflow-for-menu-bar-and-keyboard-maestro-hot-key-search" class="anchor" href="#keylue-key-clue-alfred-2-workflow-for-menu-bar-and-keyboard-maestro-hot-key-search"><span class="octicon octicon-link"></span></a>Keylue (Key Clue): Alfred 2 Workflow for Menu Bar and Keyboard Maestro Hot Key Search</h1>
+
+<p>It is like <a href="http://www.ergonis.com/products/keycue/">KeyCue</a> which helps you memorize or quickly launch hot keys. But it is still too much to pinpoint a shortcut from a 50+ entries with your eyeball. This workflow gives the freedom to search and filter the results and execute them from Alfred.</p>
+
+<h2>
+<a name="usage" class="anchor" href="#usage"><span class="octicon octicon-link"></span></a>Usage</h2>
+
+<p>Just one keywords <code>kc</code>: Show menu items and Keyboard Maestro hot keys. Hit <code>Enter</code> to execute.</p>
+
+<p>The feedback results for each application are cached for speedy response. The cached results are reloaded if it is older than an hour.</p>
+
+<p>To refresh staled feedback, append <code>!</code> after the keyword. For exammple, <code>kc ! query</code>.</p>
+
+<p><img src="https://raw.github.com/zhaocai/alfred2-keylue-workflow/master/screenshots/chrome.png" alt=""></p>
+
+<h2>
+<a name="installation" class="anchor" href="#installation"><span class="octicon octicon-link"></span></a>Installation</h2>
+
+<p>Two ways are provided:</p>
+
+<ol>
+<li><p>You can download the <a href="https://github.com/zhaocai/alfred2-kyelue-workflow/raw/master/Keylue.alfredworkflow">Keylue.alfredworkflow</a> and import to Alfred 2. This method is suitable for <strong>regular users</strong>.</p></li>
+<li><p>You can <code>git clone</code> or <code>fork</code> this repository and use <code>rake install</code> and <code>rake uninstall</code> to install. Check <code>rake -T</code> for available tasks.
+This method create a symlink to the alfred workflow directory: "~/Library/Application Support/Alfred 2/Alfred.alfredpreferences/workflows". This method is suitable for <strong>developers</strong>.</p></li>
+</ol><h2>
+<a name="reference" class="anchor" href="#reference"><span class="octicon octicon-link"></span></a>Reference</h2>
+
+<ul>
+<li><a href="http://www.alfredforum.com/topic/1993-menu-search/">Menu Search</a></li>
+<li><a href="https://github.com/ctwise/menudump">ctwise/menudump</a></li>
+</ul><h2>
+<a name="copyright" class="anchor" href="#copyright"><span class="octicon octicon-link"></span></a>Copyright</h2>
+
+<p>Copyright (c) 2013 Zhao Cai <a href="mailto:caizhaoff@gmail.com">caizhaoff@gmail.com</a></p>
+
+<p>This program is free software: you can redistribute it and/or modify it under
+the terms of the GNU General Public License as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.</p>
+
+<p>This program is distributed in the hope that it will be useful, but WITHOUT
+ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.</p>
+
+<p>You should have received a copy of the GNU General Public License along with
+this program. If not, see <a href="http://www.gnu.org/licenses/">http://www.gnu.org/licenses/</a>.</p>
+      </section>
+      <footer>
+        <p>Project maintained by <a href="https://github.com/zhaocai">zhaocai</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://twitter.com/michigangraham">mattgraham</a></small></p>
+      </footer>
+    </div>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+    
+  </body>
+</html>
