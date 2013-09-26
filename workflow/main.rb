@@ -98,7 +98,7 @@ Alfred.with_friendly_error do |alfred|
     "#{Alfred.front_appid}.alfred2feedback")
 
   alfred.with_cached_feedback do
-    use_cache_file(:file => cache_file, :expire => 3600)
+    use_cache_file(:file => cache_file)
   end
 
   is_refresh = false
