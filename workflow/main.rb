@@ -20,6 +20,7 @@ def add_keyboardmaestro_feedback(feedback, group, item, sign)
       :uid      => item['uid'] ,
       :arg      => "<action type='keyboardmaestro'>#{item['uid']}</action>",
       :icon     => feedback_icon,
+      :match?   => :all_title_match?,
     })
   elsif item['namev2']
     feedback.add_item({
@@ -28,6 +29,7 @@ def add_keyboardmaestro_feedback(feedback, group, item, sign)
       :uid      => item['uid'] ,
       :arg      => "<action type='keyboardmaestro'>#{item['uid']}</action>",
       :icon     => feedback_icon,
+      :match?   => :all_title_match?,
     })
   end
 
@@ -125,15 +127,6 @@ def generate_feedback(alfred, query)
   # puts alfred.feedback.to_alfred(query)
 end
 
-
-# Overwrite default query matcher
-module Alfred
-  class Feedback::Item
-    def match?(query)
-      all_title_match?(query)
-    end
-  end
-end
 
 
 # main ⟨⟨⟨
