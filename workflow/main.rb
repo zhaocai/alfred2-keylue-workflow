@@ -6,9 +6,32 @@ require 'rubygems' unless defined? Gem # rubygems is only needed in 1.8
 
 require "bundle/bundler/setup"
 require "alfred"
+require 'set'
 
 load 'menu_items.rb'
 
+
+def add_keyboardmaestro_feedback(feedback, group, item, sign)
+  feedback_icon = {:type => "fileicon", :name => "/Applications/Keyboard Maestro.app"}
+  if item['name']
+    feedback.add_item({
+      :title    => "#{item['key']} ⟩ #{item['name']}",
+      :subtitle => "#{sign} Keyboard Maestro: #{group}",
+      :uid      => item['uid'] ,
+      :arg      => "<action type='keyboardmaestro'>#{item['uid']}</action>",
+      :icon     => feedback_icon,
+    })
+  elsif item['namev2']
+    feedback.add_item({
+      :title    => "#{item['triggerstring']} ⟩ #{item['namev2']}",
+      :subtitle => "#{sign} Keyboard Maestro: #{group}",
+      :uid      => item['uid'] ,
+      :arg      => "<action type='keyboardmaestro'>#{item['uid']}</action>",
+      :icon     => feedback_icon,
+    })
+  end
+
+end
 
 def generate_keyboardmaestro_feedback(alfred)
   ##
@@ -16,7 +39,7 @@ def generate_keyboardmaestro_feedback(alfred)
   #   gethotkeys from keyboardmaestro.engine does not include the contextual
   #   hot keys for the frontmost application because Alfred take over the
   #   focus.
-  km_hotkeys = Plist::parse_xml(
+  global_km_hotkeys = Plist::parse_xml(
     %x{osascript <<__APPLESCRIPT__
   try
     get application id "com.stairways.keyboardmaestro.engine"
@@ -24,6 +47,16 @@ def generate_keyboardmaestro_feedback(alfred)
     return ""
   end try
 
+  tell application id "com.stairways.keyboardmaestro.engine"
+    gethotkeys with asstring
+  end tell
+
+__APPLESCRIPT__})
+
+  return unless global_km_hotkeys
+
+  context_km_hotkeys = Plist::parse_xml(
+    %x{osascript <<__APPLESCRIPT__
   tell application (path to frontmost application as text) to activate
 
   tell application id "com.stairways.keyboardmaestro.engine"
@@ -32,31 +65,23 @@ def generate_keyboardmaestro_feedback(alfred)
 
 __APPLESCRIPT__})
 
-  return unless km_hotkeys
 
   feedback = alfred.feedback
-  feedback_icon = {:type => "fileicon", :name => "/Applications/Keyboard Maestro.app"}
 
-  km_hotkeys.each do |group|
+  uids = Set.new []
+  global_km_hotkeys.each do |group|
     group_name = group['name']
-
     group['macros'].each do |item|
-      if item['name']
-        feedback.add_item({
-          :title    => "#{item['key']} ⟩ #{item['name']}",
-          :subtitle => "Keyboard Maestro: #{group_name}",
-          :uid      => item['uid'] ,
-          :arg      => "<action type='keyboardmaestro'>#{item['uid']}</action>",
-          :icon     => feedback_icon,
-        })
-      elsif item['namev2']
-        feedback.add_item({
-          :title    => "#{item['triggerstring']} ⟩ #{item['namev2']}",
-          :subtitle => "Keyboard Maestro: #{group_name}",
-          :uid      => item['uid'] ,
-          :arg      => "<action type='keyboardmaestro'>#{item['uid']}</action>",
-          :icon     => feedback_icon,
-        })
+      add_keyboardmaestro_feedback(feedback, group_name, item, '⚪')
+      uids.add(item['uid'])
+    end
+  end
+
+  context_km_hotkeys.each do |group|
+    group_name = group['name']
+    group['macros'].each do |item|
+      unless uids.include? item['uid']
+        add_keyboardmaestro_feedback(feedback, group_name, item, '🔴')
       end
     end
   end
@@ -81,9 +106,9 @@ def generate_menu_feedback(alfred)
     end
 
     feedback.add_item({
-      :title    => name                                              ,
+      :title    => "#{name}"                                         ,
       :uid      => "#{application}: #{item[:path]} > #{item[:name]}" ,
-      :subtitle => "#{application}: #{item[:path]}"                  ,
+      :subtitle => "⚫ #{application}: #{item[:path]}"                  ,
       :arg      => "<action application='#{application}' type='menu'>#{item[:line]}</action>",
       :icon     => feedback_icon,
     })
@@ -134,7 +159,7 @@ Alfred.with_friendly_error do |alfred|
     puts fb.to_alfred(ARGV)
   else
     generate_feedback(alfred, ARGV)
-    # Alfred.search("kc #{ARGV.join(" ")}")
+    Alfred.search("kc #{ARGV.join(" ")}")
   end
 end
 

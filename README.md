@@ -23,6 +23,13 @@ It is like [KeyCue][KeyCue] which helps you memorize or quickly launch hot keys.
 ![](https://raw.github.com/zhaocai/alfred2-keylue-workflow/master/screenshots/chrome.png)
 
 
+## Sign
+
+- ⚫ Menu item
+- ⚪ Keyboard Maestro global hotkeys
+- 🔴 Keyboard Maestro local hotkeys
+
+
 ## Installation
 
 Two ways are provided:
