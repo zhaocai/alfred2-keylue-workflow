@@ -62,7 +62,9 @@
 				<key>runningsubtext</key>
 				<string>Loading, Please wait...</string>
 				<key>script</key>
-				<string>/usr/bin/ruby ./main.rb {query}</string>
+				<string># kc is the keyword, if you change the keyword, change it below correspondingly:
+
+/usr/bin/ruby ./main.rb kc {query}</string>
 				<key>subtext</key>
 				<string>search Menu and Keyboard Maestro</string>
 				<key>title</key>
@@ -85,13 +87,13 @@
 				<key>action</key>
 				<integer>0</integer>
 				<key>argument</key>
-				<integer>0</integer>
+				<integer>1</integer>
 				<key>hotkey</key>
-				<integer>46</integer>
+				<integer>0</integer>
 				<key>hotmod</key>
-				<integer>1966080</integer>
+				<integer>0</integer>
 				<key>hotstring</key>
-				<string>M</string>
+				<string></string>
 				<key>leftcursor</key>
 				<false/>
 				<key>modsmode</key>

@@ -122,7 +122,7 @@ def generate_feedback(alfred, query)
   generate_keyboardmaestro_feedback(alfred)
 
   alfred.feedback.put_cached_feedback
-  puts alfred.feedback.to_alfred(query)
+  # puts alfred.feedback.to_alfred(query)
 end
 
 
@@ -134,6 +134,12 @@ module Alfred
     end
   end
 end
+
+
+# main ⟨⟨⟨
+# --------
+
+keyword = ARGV.shift
 
 Alfred.with_friendly_error do |alfred|
   alfred.with_rescue_feedback = true
@@ -159,7 +165,10 @@ Alfred.with_friendly_error do |alfred|
     puts fb.to_alfred(ARGV)
   else
     generate_feedback(alfred, ARGV)
-    Alfred.search("kc #{ARGV.join(" ")}")
+    Alfred.search "#{keyword} #{ARGV.join(' ')}"
   end
 end
+
+
+# ⟩⟩⟩
 

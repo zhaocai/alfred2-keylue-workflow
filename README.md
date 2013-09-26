@@ -16,7 +16,8 @@ It is like [KeyCue][KeyCue] which helps you memorize or quickly launch hot keys.
     - `kc ! {query}`
     - `kc {query} !`
 
-3. To filter `⌘`, `⌥`, set up a typing expansion using [TextExpander](!g "TextExpander"), [Keyboard Maestro](!g "Keyboard Maestro"), etc.
+3. To filter `⌘`, `⌥`, set up a typing expansion using [TextExpander](http://smilesoftware.com/TextExpander/index.html), [Keyboard Maestro](http://www.keyboardmaestro.com/), etc.
+
 
 4. To show only **Keyboard Maestro** hot keys, type `Keyboard Maestro:` in the {query}. 
 
@@ -67,8 +68,6 @@ FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
 
 You should have received a copy of the GNU General Public License along with
 this program. If not, see <http://www.gnu.org/licenses/>.
-
-
 
 
 [KeyCue]: http://www.ergonis.com/products/keycue/
