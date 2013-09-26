@@ -25,9 +25,9 @@ It is like [KeyCue][KeyCue] which helps you memorize or quickly launch hot keys.
 
 ## Sign
 
-- ⚫ Menu item
-- ⚪ Keyboard Maestro global hotkeys
-- 🔴 Keyboard Maestro local hotkeys
+- :black_circle: Menu item
+- :white_circle: Keyboard Maestro global hotkeys
+- :red_circle: Keyboard Maestro local hotkeys
 
 
 ## Installation
