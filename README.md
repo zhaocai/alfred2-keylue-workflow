@@ -8,13 +8,20 @@ It is like [KeyCue][KeyCue] which helps you memorize or quickly launch hot keys.
 
 ## Usage
 
-Just one keywords `kc`: Show menu items and Keyboard Maestro hot keys. Hit `Enter` to execute.
+1. keyword `kc`: Show menu items and Keyboard Maestro hot keys. Hit `Enter` to execute.
 
-The feedback results for each application are cached for speedy response. The cached results are reloaded if it is older than an hour.
+    The feedback results for each application are cached for speedy response. The cached results are reloaded if it is older than an hour.
 
-To refresh staled feedback, append `!` after the keyword. For example, `kc ! query`.
+2. To refresh cached feedback, begine or end the {query} with `!` like:
+    - `kc ! {query}`
+    - `kc {query} !`
+
+3. To filter `⌘`, `⌥`, set up a typing expansion using [TextExpander](!g "TextExpander"), [Keyboard Maestro](!g "Keyboard Maestro"), etc.
+
+4. To show only **Keyboard Maestro** hot keys, type `Keyboard Maestro:` in the {query}. 
 
 ![](https://raw.github.com/zhaocai/alfred2-keylue-workflow/master/screenshots/chrome.png)
+
 
 ## Installation
 
@@ -24,6 +31,13 @@ Two ways are provided:
 
 2. You can `git clone` or `fork` this repository and use `rake install` and `rake uninstall` to install. Check `rake -T` for available tasks.
 This method create a symlink to the alfred workflow directory: "~/Library/Application Support/Alfred 2/Alfred.alfredpreferences/workflows". This method is suitable for **developers**.
+
+## FAQs
+
+1. Keyboard Maestro contextual hot keys for current application
+
+Keyboard Maestro contextual hot keys cannot be retrieved from Alfred window because Alfred takes over the focus of current application. A workaround is to temporarily activate the current application, retrieve the contextual hot keys and reactivate Alfred.
+
 
 ## Reference
 

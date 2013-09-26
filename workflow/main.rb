@@ -11,6 +11,11 @@ load 'menu_items.rb'
 
 
 def generate_keyboardmaestro_feedback(alfred)
+  ##
+  # **Quit Alfred to load Keyboard Maestro hotkeys**:
+  #   gethotkeys from keyboardmaestro.engine does not include the contextual
+  #   hot keys for the frontmost application because Alfred take over the
+  #   focus.
   km_hotkeys = Plist::parse_xml(
     %x{osascript <<__APPLESCRIPT__
   try
@@ -19,9 +24,12 @@ def generate_keyboardmaestro_feedback(alfred)
     return ""
   end try
 
+  tell application (path to frontmost application as text) to activate
+
   tell application id "com.stairways.keyboardmaestro.engine"
     gethotkeys with asstring
   end tell
+
 __APPLESCRIPT__})
 
   return unless km_hotkeys
@@ -55,6 +63,7 @@ __APPLESCRIPT__})
 
 end
 
+
 def generate_menu_feedback(alfred)
 
   feedback = alfred.feedback
@@ -82,12 +91,23 @@ def generate_menu_feedback(alfred)
 
 end
 
+
 def generate_feedback(alfred, query)
   generate_menu_feedback(alfred)
   generate_keyboardmaestro_feedback(alfred)
 
   alfred.feedback.put_cached_feedback
   puts alfred.feedback.to_alfred(query)
+end
+
+
+# Overwrite default query matcher
+module Alfred
+  class Feedback::Item
+    def match?(query)
+      all_title_match?(query)
+    end
+  end
 end
 
 Alfred.with_friendly_error do |alfred|
@@ -102,15 +122,19 @@ Alfred.with_friendly_error do |alfred|
   end
 
   is_refresh = false
-  if ARGV[0] == '!'
+  if ARGV[0].eql?('!')
     is_refresh = true
     ARGV.shift
+  elsif ARGV[-1].eql?('!')
+    is_refresh = true
+    ARGV.delete_at(-1)
   end
 
   if !is_refresh and fb = alfred.feedback.get_cached_feedback
     puts fb.to_alfred(ARGV)
   else
     generate_feedback(alfred, ARGV)
+    # Alfred.search("kc #{ARGV.join(" ")}")
   end
 end
 
