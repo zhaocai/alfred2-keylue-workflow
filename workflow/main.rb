@@ -11,6 +11,9 @@ require 'set'
 load 'menu_items.rb'
 
 
+# feedback ⟨⟨⟨
+# ------------
+
 def add_keyboardmaestro_feedback(feedback, group, item, sign)
   feedback_icon = {:type => "fileicon", :name => "/Applications/Keyboard Maestro.app"}
   if item['name']
@@ -126,6 +129,10 @@ def generate_feedback(alfred, query)
   alfred.feedback.put_cached_feedback
   # puts alfred.feedback.to_alfred(query)
 end
+
+# ⟩⟩⟩
+
+
 
 
 
