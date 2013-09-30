@@ -87,15 +87,15 @@
 				<key>action</key>
 				<integer>0</integer>
 				<key>argument</key>
-				<integer>1</integer>
+				<integer>0</integer>
 				<key>hotkey</key>
-				<integer>0</integer>
+				<integer>46</integer>
 				<key>hotmod</key>
-				<integer>0</integer>
+				<integer>1966080</integer>
 				<key>hotstring</key>
-				<string></string>
+				<string>M</string>
 				<key>leftcursor</key>
-				<false/>
+				<true/>
 				<key>modsmode</key>
 				<integer>0</integer>
 			</dict>

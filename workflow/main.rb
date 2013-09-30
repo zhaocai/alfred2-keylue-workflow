@@ -13,6 +13,12 @@ load 'menu_items.rb'
 
 # feedback ⟨⟨⟨
 # ------------
+def xml_arg(text, attributes = {})
+  xml_element = REXML::Element.new('action')
+  xml_element.add_attributes(attributes) unless attributes.empty?
+  xml_element.text = text
+  xml_element
+end
 
 def add_keyboardmaestro_feedback(feedback, group, item, sign)
   feedback_icon = {:type => "fileicon", :name => "/Applications/Keyboard Maestro.app"}
@@ -21,7 +27,7 @@ def add_keyboardmaestro_feedback(feedback, group, item, sign)
       :title    => "#{item['key']} ⟩ #{item['name']}",
       :subtitle => "#{sign} Keyboard Maestro: #{group}",
       :uid      => item['uid'] ,
-      :arg      => "<action type='keyboardmaestro'>#{item['uid']}</action>",
+      :arg      => xml_arg(item['uid'], 'type' => 'keyboardmaestro'),
       :icon     => feedback_icon,
       :match?   => :all_title_match?,
     })
@@ -30,7 +36,7 @@ def add_keyboardmaestro_feedback(feedback, group, item, sign)
       :title    => "#{item['triggerstring']} ⟩ #{item['namev2']}",
       :subtitle => "#{sign} Keyboard Maestro: #{group}",
       :uid      => item['uid'] ,
-      :arg      => "<action type='keyboardmaestro'>#{item['uid']}</action>",
+      :arg      => xml_arg(item['uid'], 'type' => 'keyboardmaestro'),
       :icon     => feedback_icon,
       :match?   => :all_title_match?,
     })
@@ -113,8 +119,8 @@ def generate_menu_feedback(alfred)
     feedback.add_item({
       :title    => "#{name}"                                         ,
       :uid      => "#{application}: #{item[:path]} > #{item[:name]}" ,
-      :subtitle => "⚫ #{application}: #{item[:path]}"                  ,
-      :arg      => "<action application='#{application}' type='menu'>#{item[:line]}</action>",
+      :subtitle => "⚫ #{application}: #{item[:path]}"                ,
+      :arg      => xml_arg(item[:line], {'application' => application, 'type' => 'menu'}),
       :icon     => feedback_icon,
     })
   end
