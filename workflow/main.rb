@@ -100,14 +100,19 @@ __APPLESCRIPT__})
 end
 
 
-def generate_menu_feedback(alfred)
+def generate_menu_feedback(alfred, type = :menu)
 
   feedback = alfred.feedback
-  items = MenuItems.generate_items
+  items = MenuItems.generate_items(type)
 
   application = items[:application]
   application_location = items[:application_location]
   feedback_icon = {:type => "fileicon", :name => application_location}
+  sign = '⚫'
+  if type.eql? :services
+    feedback_icon = {:type => "fileicon", :name => "/Applications/Automator.app"}
+    sign = '🔵'
+  end
 
   items[:menus].each do |item|
     if item[:shortcut].empty?
@@ -119,22 +124,14 @@ def generate_menu_feedback(alfred)
     feedback.add_item({
       :title    => "#{name}"                                         ,
       :uid      => "#{application}: #{item[:path]} > #{item[:name]}" ,
-      :subtitle => "⚫ #{application}: #{item[:path]}"                ,
+      :subtitle => "#{sign} #{application}: #{item[:path]}"                ,
       :arg      => xml_arg(item[:line], {'application' => application, 'type' => 'menu'}),
       :icon     => feedback_icon,
     })
   end
-
 end
 
 
-def generate_feedback(alfred, query)
-  generate_menu_feedback(alfred)
-  generate_keyboardmaestro_feedback(alfred)
-
-  alfred.feedback.put_cached_feedback
-  # puts alfred.feedback.to_alfred(query)
-end
 
 # ⟩⟩⟩
 
@@ -145,33 +142,65 @@ end
 # main ⟨⟨⟨
 # --------
 
-keyword = ARGV.shift
+
+def is_refresh
+  should_reload = false
+  if ARGV[0].eql?('!')
+    ARGV.shift
+    should_reload = true
+  elsif ARGV[-1].eql?('!')
+    ARGV.delete_at(-1)
+    should_reload = true
+  end
+  should_reload
+end
+
 
 Alfred.with_friendly_error do |alfred|
   alfred.with_rescue_feedback = true
 
-  cache_file = File.join(
-    alfred.volatile_storage_path,
-    "#{Alfred.front_appid}.alfred2feedback")
-
-  alfred.with_cached_feedback do
-    use_cache_file(:file => cache_file)
-  end
-
-  is_refresh = false
-  if ARGV[0].eql?('!')
-    is_refresh = true
+  keyword = ARGV.shift
+  case ARGV[0]
+  when '/m', '/menu'
+    type = :menu
     ARGV.shift
-  elsif ARGV[-1].eql?('!')
-    is_refresh = true
-    ARGV.delete_at(-1)
+  when '/k'
+    type = :keyboardmaestro 
+    ARGV.shift
+  when '/s', '/services'
+    type = :services
+    ARGV.shift
+  else
+    type = :menu
   end
 
-  if !is_refresh and fb = alfred.feedback.get_cached_feedback
-    puts fb.to_alfred(ARGV)
+  query = ARGV
+
+  if type.eql?(:services)
+    generate_menu_feedback(alfred, type)
+    puts alfred.feedback.to_alfred(query)
   else
-    generate_feedback(alfred, ARGV)
-    Alfred.search "#{keyword} #{ARGV.join(' ')}"
+    cache_file = File.join(
+      alfred.volatile_storage_path,
+      "#{Alfred.front_appid}_#{type}.alfred2feedback")
+
+    alfred.with_cached_feedback do
+      use_cache_file(:file => cache_file)
+    end
+
+    if !is_refresh and fb = alfred.feedback.get_cached_feedback
+      puts fb.to_alfred(query)
+    else
+      if type.eql?(:menu)
+        generate_menu_feedback(alfred, type)
+        alfred.feedback.put_cached_feedback
+        puts alfred.feedback.to_alfred(query)
+      elsif type.eql?(:keyboardmaestro)
+        generate_keyboardmaestro_feedback(alfred)
+        alfred.feedback.put_cached_feedback
+        Alfred.search "#{keyword} #{query.join(' ')}"
+      end
+    end
   end
 end
 

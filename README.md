@@ -27,6 +27,7 @@ It is like [KeyCue][KeyCue] which helps you memorize or quickly launch hot keys.
 ## Sign
 
 - :black_circle: Menu item
+- :blue_circle: Services
 - :white_circle: Keyboard Maestro global hotkeys
 - :red_circle: Keyboard Maestro local hotkeys
 

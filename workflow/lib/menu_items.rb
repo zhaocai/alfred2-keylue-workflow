@@ -19,8 +19,9 @@ module MenuItems
     leaves
   end
 
-  def generate_items()
-    menu_yaml = `./bin/menudump --yaml`
+  # type = :menu or :services
+  def generate_items(type = :menu)
+    menu_yaml = %x{./bin/menudump --yaml --output #{type.to_s}}
     if $? == 0
       menu_items = YAML.load(menu_yaml)
 

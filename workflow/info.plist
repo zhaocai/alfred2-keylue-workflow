@@ -53,37 +53,6 @@
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>argumenttype</key>
-				<integer>1</integer>
-				<key>escaping</key>
-				<integer>126</integer>
-				<key>keyword</key>
-				<string>kc</string>
-				<key>runningsubtext</key>
-				<string>Loading, Please wait...</string>
-				<key>script</key>
-				<string># kc is the keyword, if you change the keyword, change it below correspondingly:
-
-/usr/bin/ruby ./main.rb kc {query}</string>
-				<key>subtext</key>
-				<string>search Menu and Keyboard Maestro</string>
-				<key>title</key>
-				<string>Key Clue for '{query}'</string>
-				<key>type</key>
-				<integer>0</integer>
-				<key>withspace</key>
-				<true/>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.input.scriptfilter</string>
-			<key>uid</key>
-			<string>D75A822F-5FB7-4372-B080-617E8D0BA5C1</string>
-			<key>version</key>
-			<integer>0</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
 				<key>action</key>
 				<integer>0</integer>
 				<key>argument</key>
@@ -149,6 +118,38 @@
 			<key>version</key>
 			<integer>0</integer>
 		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>1</integer>
+				<key>escaping</key>
+				<integer>126</integer>
+				<key>keyword</key>
+				<string>kc</string>
+				<key>runningsubtext</key>
+				<string>Loading, Please wait...</string>
+				<key>script</key>
+				<string># kc is the keyword. 
+# if you change "kc", modify it below correspondingly:
+
+/usr/bin/ruby ./main.rb kc {query}</string>
+				<key>subtext</key>
+				<string>search Menu and Keyboard Maestro</string>
+				<key>title</key>
+				<string>Key Clue for '{query}'</string>
+				<key>type</key>
+				<integer>0</integer>
+				<key>withspace</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.scriptfilter</string>
+			<key>uid</key>
+			<string>D75A822F-5FB7-4372-B080-617E8D0BA5C1</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
 	</array>
 	<key>readme</key>
 	<string>## Reference:
@@ -174,7 +175,7 @@
 		<key>D75A822F-5FB7-4372-B080-617E8D0BA5C1</key>
 		<dict>
 			<key>ypos</key>
-			<real>10</real>
+			<real>100</real>
 		</dict>
 	</dict>
 	<key>webaddress</key>
