@@ -58,11 +58,11 @@
 				<key>argument</key>
 				<integer>0</integer>
 				<key>hotkey</key>
-				<integer>46</integer>
+				<integer>0</integer>
 				<key>hotmod</key>
-				<integer>1966080</integer>
+				<integer>0</integer>
 				<key>hotstring</key>
-				<string>M</string>
+				<string></string>
 				<key>leftcursor</key>
 				<true/>
 				<key>modsmode</key>
