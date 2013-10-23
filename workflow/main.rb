@@ -1,10 +1,10 @@
 #!/usr/bin/env ruby
 # -*- coding: utf-8 -*-
 
-require 'rubygems' unless defined? Gem # rubygems is only needed in 1.8
 ($LOAD_PATH << File.expand_path("../lib", __FILE__)).uniq!
+require 'rubygems' unless defined? Gem # rubygems is only needed in 1.8
 
-require "bundle/bundler/setup"
+require "./bundle/bundler/setup"
 require "alfred"
 require 'set'
 
