@@ -79,9 +79,9 @@
 			<key>config</key>
 			<dict>
 				<key>escaping</key>
-				<integer>4</integer>
+				<integer>102</integer>
 				<key>script</key>
-				<string>LANG=en_US.UTF-8 /usr/bin/ruby ./action.rb "{query}"</string>
+				<string>LANG=en_US.UTF-8 /usr/bin/ruby ./main.rb --workflow-mode=action "{query}"</string>
 				<key>type</key>
 				<integer>0</integer>
 			</dict>
@@ -132,7 +132,7 @@
 				<string># kc is the keyword. 
 # if you change "kc", modify it below correspondingly:
 
-LANG=en_US.UTF-8 /usr/bin/ruby ./main.rb kc {query}</string>
+LANG=en_US.UTF-8 /usr/bin/ruby ./main.rb {query}</string>
 				<key>subtext</key>
 				<string>search Menu and Keyboard Maestro</string>
 				<key>title</key>

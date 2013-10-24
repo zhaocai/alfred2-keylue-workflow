@@ -1,0 +1,10 @@
+---
+:id: me.zhaowu.keylue
+:help: 
+  - :kind: url
+    :title: Check the Homepage for usage help
+    :subtitle: http://zhaocai.github.io/alfred2-keylue-workflow/
+    :url: http://zhaocai.github.io/alfred2-keylue-workflow/
+  - :kind: file
+    :path: README.pdf
+
