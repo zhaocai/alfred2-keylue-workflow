@@ -195,7 +195,7 @@ __APPLESCRIPT__}
       feedback.add_item({
         :title    => "#{name}"                                         ,
         :uid      => "#{application}: #{item[:path]} > #{item[:name]}" ,
-        :subtitle => "#{sign} #{application}: #{item[:path]}"                ,
+        :subtitle => "#{sign} #{application}: #{item[:path]}"          ,
         :arg      => arg,
         :icon     => feedback_icon,
       })
