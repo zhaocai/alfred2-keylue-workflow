@@ -6,6 +6,17 @@
 	<string>me.zhaocai.keylue</string>
 	<key>connections</key>
 	<dict>
+		<key>6606A26A-0B1A-4547-A12D-D71D16978548</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>C8DFF277-2C74-48D3-B685-F304268DF007</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+		</array>
 		<key>B1612814-E74D-47AF-920E-8038BD947AEB</key>
 		<array>
 			<dict>
@@ -123,16 +134,13 @@
 				<key>argumenttype</key>
 				<integer>1</integer>
 				<key>escaping</key>
-				<integer>126</integer>
+				<integer>0</integer>
 				<key>keyword</key>
 				<string>kc</string>
 				<key>runningsubtext</key>
 				<string>Loading, Please wait...</string>
 				<key>script</key>
-				<string># kc is the keyword. 
-# if you change "kc", modify it below correspondingly:
-
-LANG=en_US.UTF-8 /usr/bin/ruby ./main.rb {query}</string>
+				<string>LANG=en_US.UTF-8 /usr/bin/ruby ./main.rb {query}</string>
 				<key>subtext</key>
 				<string>search Menu and Keyboard Maestro</string>
 				<key>title</key>
@@ -149,6 +157,35 @@ LANG=en_US.UTF-8 /usr/bin/ruby ./main.rb {query}</string>
 			<key>version</key>
 			<integer>0</integer>
 		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>1</integer>
+				<key>escaping</key>
+				<integer>0</integer>
+				<key>keyword</key>
+				<string>km</string>
+				<key>runningsubtext</key>
+				<string>Working... o((&gt;ω&lt; ))o</string>
+				<key>script</key>
+				<string>LANG=en_US.UTF-8 /usr/bin/ruby ./main.rb --all -k {query}</string>
+				<key>subtext</key>
+				<string>Filter by '{query}'</string>
+				<key>title</key>
+				<string>Keyboard Maestro Macros</string>
+				<key>type</key>
+				<integer>0</integer>
+				<key>withspace</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.scriptfilter</string>
+			<key>uid</key>
+			<string>6606A26A-0B1A-4547-A12D-D71D16978548</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
 	</array>
 	<key>readme</key>
 	<string>## Reference:
@@ -156,6 +193,11 @@ LANG=en_US.UTF-8 /usr/bin/ruby ./main.rb {query}</string>
 - [menudump](https://github.com/ctwise/menudump "menudump")</string>
 	<key>uidata</key>
 	<dict>
+		<key>6606A26A-0B1A-4547-A12D-D71D16978548</key>
+		<dict>
+			<key>ypos</key>
+			<real>220</real>
+		</dict>
 		<key>AB56D745-4CA7-4C5C-A53A-54B1496BDD0D</key>
 		<dict>
 			<key>ypos</key>

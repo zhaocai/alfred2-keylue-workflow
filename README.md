@@ -23,6 +23,9 @@ It is like [KeyCue][KeyCue] which helps you memorize or quickly launch hot keys.
 
 ![](https://raw.github.com/zhaocai/alfred2-keylue-workflow/master/screenshots/chrome.png)
 
+5. keyword `km`: show Keyboard Maestro macros
+
+It is equal to `kc --all -k {query}`
 
 ## Sign
 

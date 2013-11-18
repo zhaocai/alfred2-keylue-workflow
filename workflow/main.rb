@@ -34,10 +34,13 @@ class Keylue < ::Alfred::Handler::Base
 
   def on_parser
     options.type = :menu
+    options[:all?] = false
     options.keyword = 'kc'
 
     parser.on("-a", "--all", "all menu items") do
-      options.type = :menu
+      options.type = :all
+
+      options[:all?] = true
     end
 
     parser.on("-m", "--menu", "application menu items") do
@@ -222,6 +225,12 @@ __APPLESCRIPT__}
       end
     end
 
+    if options[:all?]
+      getall = "with getall"
+    else
+      getall = ''
+    end
+
     ##
     # **Quit Alfred to load Keyboard Maestro hotkeys**:
     #   gethotkeys from keyboardmaestro.engine does not include the contextual
@@ -236,7 +245,7 @@ __APPLESCRIPT__}
         end try
 
         tell application id "com.stairways.keyboardmaestro.engine"
-          gethotkeys with asstring
+          gethotkeys with asstring #{getall}
         end tell
 __APPLESCRIPT__})
 
@@ -247,7 +256,7 @@ __APPLESCRIPT__})
   tell application (path to frontmost application as text) to activate
 
   tell application id "com.stairways.keyboardmaestro.engine"
-    gethotkeys with asstring
+    gethotkeys with asstring #{getall}
   end tell
 
 __APPLESCRIPT__})
