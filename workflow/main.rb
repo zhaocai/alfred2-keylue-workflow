@@ -254,6 +254,7 @@ __APPLESCRIPT__})
     context_km_hotkeys = Plist::parse_xml(
       %x{osascript <<__APPLESCRIPT__
   tell application (path to frontmost application as text) to activate
+  delay 0.5
 
   tell application id "com.stairways.keyboardmaestro.engine"
     gethotkeys with asstring #{getall}
